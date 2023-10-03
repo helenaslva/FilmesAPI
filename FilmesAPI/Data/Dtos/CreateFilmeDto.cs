@@ -10,7 +10,7 @@ namespace FilmesAPI.Data.Dtos
         [Required(ErrorMessage = "O gênero do filme é obrigatório")]
         public string Genero { get; set; }
         [Required]
-        [Range(70, 600, ErrorMessage = "O filme deve ter duração m´´ionima de 60 min e máx de 600 min")]
+        [Range(70, 600, ErrorMessage = "O filme deve ter duração mínima de 60 min e máx de 600 min")]
         public int Duracao { get; set; }
     }
 }

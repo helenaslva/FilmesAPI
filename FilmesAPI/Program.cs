@@ -1,11 +1,12 @@
 using FilmesAPI.Data;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("FilmeConnection");
 
-builder.Services.AddDbContext<FilmeContext>(opts => opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+builder.Services.AddDbContext<FilmeContext>(opts => opts.UseLazyLoadingProxies().UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());//Precisa pro automapper 
 
@@ -16,6 +17,7 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 
 var app = builder.Build();
 
